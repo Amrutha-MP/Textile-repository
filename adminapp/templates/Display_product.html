@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<h1>hell</h1>-->
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Product details</h4>
+<!--                    <p class="card-description"> Add class <code>.table-hover</code>-->
+<!--                    </p>-->
+                      <div class="table-responsive">
+                    <table class="table table-hover" border="4px">
+                      <thead>
+                        <tr>
+                          <th>CategoryName</th>
+                          <th>Product_Name</th>
+                          <th>Description</th>
+                          <th>Price</th>
+                            <th>Brand_Name</th>
+                            <th>CategoryImage1</th>
+                            <th>CategoryImage2</th>
+                            <th>CategoryImage3</th>
+                            <th>Option</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for d in category %}
+                        <tr>
+                            <td>{{d.CategoryName}}</td>
+                            <td>{{d.Product_Name}}</td>
+                            <td>{{d.Description}}</td>
+                            <td>{{d.Price}}</td>
+                            <td>{{d.Brand_Name}}</td>
+                            <td>
+                                <img src="{{d.CategoryImage1.url}}">
+                            </td>
+                            <td>
+                                <img src="{{d.CategoryImage2.url}}">
+                            </td>
+                            <td>
+                                <img src="{{d.CategoryImage3.url}}">
+
+                            </td>
+                            <td>
+                                <a href="{% url 'Edit_product' pro_id=d.id %}">
+                                    <button class="btn btn-outline-primary">Edit</button>
+                                </a>
+                                 <a href="{% url 'delete_product' pro_id=d.id %}">
+                                    <button class="btn btn-outline-danger">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                      </tbody>
+                        {% endfor %}
+                    </table>
+                      </div>
+                  </div>
+                </div>
+              </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+ {% for i in messages %}
+   {% if i.tags == 'warning' %}
+    <script>
+        swal('{{i}}','','warning');
+    </script>
+ {% elif i.tags == 'error' %}
+    <script>
+        swal('{{i}}','','error');
+    </script>
+ {% elif i.tags == 'info' %}
+    <script>
+        swal('{{i}}','','info');
+    </script>
+ {% else %}
+    <script>
+         swal('{{i}}','','success');
+    </script>
+   {% endif %}
+ {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

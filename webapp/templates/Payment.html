@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" method="post">
+    {% csrf_token %}
+    <div style="margin-top:200px;">
+    <h1 style="margin-left:500px;">Proceed to Payment</h1>
+        <h2  style="margin-left:600px;">{{customer.User_Name}}</h2><br>
+        <input type="hidden" name="">
+        <img src="{% static 'payment.png' %}" width="100px" height="100px"  style="margin-left:600px;">
+        <br><br>
+        <button class="btn" style="margin-left:600px;">Make Payment</button>
+    </div>
+</form>
+
+
+
+<style>
+    *{
+      box-sizing: border-box;
+      padding:0px;
+      margin:0px;
+      font-family: cursive;
+    }
+    html,body{
+    height:100%;
+    }
+    body{
+    background-image:url({% static 'pay.jpg' %});
+     background-repeat: no-repeat;
+     background-size: cover;
+    display:flex;
+    justify-content:center;
+    align-item:center;
+    }
+    .btn{
+    border-radius:4px;
+    cursor:pointer;
+    padding:4px 8px;
+    background-color:#a30217;
+    color:white;
+    font-weight:600;
+    letter-spacing:1px;
+    }
+</style>
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_oVF8wJ5V3HMhtw"
+    data-amount="{{ payy_str }}"
+    data-currency="INR"
+    data-order_id="{{ payment.order_id }}"
+    data-buttontext=""
+    data-name="Textile"
+    data-description="Your description"
+    data-image=""
+    data-prefill.name="abc"
+    data-prefill.email="abc@gmail.com"
+    data-theme.color="#4badeb"
+></script>
+
+</body>
+</html>

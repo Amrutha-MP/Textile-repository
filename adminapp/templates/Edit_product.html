@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<h1>hello</h1>-->
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Add products</h4>
+                    <p class="card-description"> Add products here..</p>
+                    <form class="forms-sample" method="post" action="{% url 'update_product' pro_id=products.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                      <div class="form-group">
+                        <label >Category_Name</label>
+
+                          <select class="form-control" name="cname">
+
+                              <option>{{products.CategoryName}}</option>
+                              {% for d in category %}
+                              <option>{{d.Category_Name}}</option>
+
+                              {% endfor %}
+                          </select>
+
+                      </div>
+                         <div class="form-group">
+                        <label for="exampleInputCity1">Product_Name</label>
+                        <input type="text"  class="form-control" value="{{products.Product_Name}}" id="1" placeholder="Product_Name" name="product_name">
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleInputCity1">Description</label>
+                        <input type="text" class="form-control"  value="{{products.Description}}" id="exampleInputCity1" placeholder="Description" name="description">
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleInputName1">Price</label>
+                        <input type="text" class="form-control"  value="{{products.Price}}"  id="exampleInputName1" placeholder="Price" name="price">
+                      </div>
+
+                         <div class="form-group">
+                        <label for="exampleInputCity1">Brand_Name</label>
+                        <input type="text" class="form-control" value="{{products.Brand_Name}}"  id="" placeholder="Brand_Name" name="brand_name">
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputName1">Image1</label>
+                           <img src="{{products.CategoryImage1.url}}">
+                        <input type="file" class="form-control"  id="2" placeholder="Image1" name="img1">
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleInputName1">Image2</label>
+                            <img src="{{products.CategoryImage2.url}}">
+                        <input type="file" class="form-control"  id="3" placeholder="Image2" name="img2">
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleInputName1">Image3</label>
+                            <img src="{{products.CategoryImage3.url}}">
+                        <input type="file" class="form-control"  id="4" placeholder="Image3" name="img3">
+                      </div>
+
+
+
+                      <button type="submit" class="btn btn-primary mr-2">Update</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}
